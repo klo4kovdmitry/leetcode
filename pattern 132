@@ -1,2 +1,23 @@
-a= 1
-print(a)
+class Solution:
+    def find132pattern(self, nums: List[int]) -> bool:
+        success = False
+        prevElement = nums[0]
+        for i in range(len(nums)):
+            if prevElement > ((nums[i] - nums[0])*(nums[i] - nums[0]))**0.5:
+                success = True
+                break
+            prevElement = ((nums[i] - nums[0])*(nums[i] - nums[0]))**0.5
+        if success == False: return False
+                                   
+        lastI = nums[0] + 1
+        for i in range(len(nums) - 2):
+            if nums[i] < lastI:
+                lastJ = nums[i]+1
+                for j in range(i+1,len(nums)-1):
+                    if nums[j] > lastJ:
+                        for k in range(j+1,len(nums)):
+                            if nums[i] < nums[k] and nums[k] < nums[j]:
+                                return (True)
+                        lastJ = nums[j]
+                lastI = nums[i]
+        return (False)
