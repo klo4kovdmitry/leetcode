@@ -1,0 +1,30 @@
+def validation (s: str):
+        stackStr = ''
+        if len(s)%2 != 0:
+            return False
+        for t in s:
+            if t in '[{(':
+                stackStr += t
+            elif len(stackStr) < 1:
+                return False
+            else:
+                if t == ']':
+                    if stackStr[len(stackStr)-1] == '[': # correct closing
+                        stackStr = stackStr[:len(stackStr) - 1]
+                    else:
+                        return False
+                elif t == '}':
+                    if stackStr[len(stackStr)-1] == '{': # correct closing
+                        stackStr = stackStr[:len(stackStr) - 1]
+                    else:
+                        return False
+                elif t == ')':
+                    if stackStr[len(stackStr)-1] == '(': # correct closing
+                        stackStr = stackStr[:len(stackStr) - 1]
+                    else:
+                        return False
+        if stackStr == '':
+            return True
+        else: return False
+
+print (validation('[]{}()([)'))
