@@ -1,0 +1,8 @@
+input = [1,3,2,1,5,4]
+target = 8
+arrLen = len(input)
+for a in range(arrLen):
+    for b in range(a+1, arrLen):
+        if input[a] + input[b] == target:
+            return [a,b]
+        
